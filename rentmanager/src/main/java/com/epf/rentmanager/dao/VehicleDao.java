@@ -87,5 +87,8 @@ public class VehicleDao {
 		}
 	}
 	
-
+	public int count() throws DaoException {
+		List<Vehicle> nbr = findAll();
+		return nbr.size();
+	}
 }

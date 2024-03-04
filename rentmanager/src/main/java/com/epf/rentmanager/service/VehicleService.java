@@ -79,4 +79,14 @@ public class VehicleService {
 		}
 		return liiiiiiiiiiist;
 	}
+
+	public int count() throws DaoException, ServiceException {
+		int nbr = 0;
+		try {
+			nbr = vehicleDao.count();
+			return nbr;
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

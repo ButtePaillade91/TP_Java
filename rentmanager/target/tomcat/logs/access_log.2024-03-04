@@ -130,3 +130,17 @@
 0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:54:31 +0100] "POST /rentmanager/cars/create HTTP/1.1" 302 - http-bio-8080-exec-7 213
 0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:54:31 +0100] "GET /cars HTTP/1.1" 404 - http-bio-8080-exec-8 0
 0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:54:33 +0100] "GET /cars HTTP/1.1" 404 - http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:55:00 +0100] "POST /rentmanager/cars/create HTTP/1.1" 302 - http-bio-8080-exec-1 233
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:55:00 +0100] "GET /rentmanager/cars HTTP/1.1" 200 19209 http-bio-8080-exec-3 81
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:55:00 +0100] "GET /rentmanager/resources/bower_components/fastclick/lib/fastclick.js HTTP/1.1" 404 1081 http-bio-8080-exec-2 2
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:55:00 +0100] "GET /rentmanager/resources/bower_components/Ionicons/css/ionicons.min.css HTTP/1.1" 404 1087 http-bio-8080-exec-4 3
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:16:55:00 +0100] "GET /rentmanager/resources/js/demo.js HTTP/1.1" 404 1015 http-bio-8080-exec-5 2
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:20 +0100] "GET /rentmanager/cars/create HTTP/1.1" 200 8054 http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:20 +0100] "GET /rentmanager/resources/bower_components/Ionicons/css/ionicons.min.css HTTP/1.1" 404 1087 http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:20 +0100] "GET /rentmanager/resources/bower_components/fastclick/lib/fastclick.js HTTP/1.1" 404 1081 http-bio-8080-exec-10 0
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:20 +0100] "GET /rentmanager/resources/js/demo.js HTTP/1.1" 404 1015 http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:29 +0100] "POST /rentmanager/cars/create HTTP/1.1" 302 - http-bio-8080-exec-5 49
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:29 +0100] "GET /rentmanager/cars HTTP/1.1" 200 20241 http-bio-8080-exec-5 16
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:29 +0100] "GET /rentmanager/resources/bower_components/Ionicons/css/ionicons.min.css HTTP/1.1" 404 1087 http-bio-8080-exec-5 1
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:29 +0100] "GET /rentmanager/resources/bower_components/fastclick/lib/fastclick.js HTTP/1.1" 404 1081 http-bio-8080-exec-10 1
+0:0:0:0:0:0:0:1 - - [04/Mar/2024:17:14:29 +0100] "GET /rentmanager/resources/js/demo.js HTTP/1.1" 404 1015 http-bio-8080-exec-3 0
