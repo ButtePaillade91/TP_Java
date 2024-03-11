@@ -25,7 +25,7 @@
                     <!-- Horizontal Form -->
                     <div class="box">
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" action="/users/create">
+                        <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="last_name" class="col-sm-2 control-label">Nom</label>
@@ -48,6 +48,14 @@
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="dateNaissance" class="col-sm-2 control-label">Date de naissance</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="dateNaissance" name="dateNaissance" required
+                                            data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
@@ -62,6 +70,18 @@
             </div>
         </section>
         <!-- /.content -->
+        <script src="${pageContext.request.contextPath}/src/main/webapp/resources/js/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/src/main/webapp/resources/js/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/src/main/webapp/resources/css/jquery-ui.css">
+        <script>
+            $(function() {
+            $("#dateNaissance").datepicker({
+            dateFormat: "yy-mm-dd", // Format de date souhaité
+            changeMonth: true,
+            changeYear: true
+            });
+            });
+        </script>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -69,5 +89,13 @@
 <!-- ./wrapper -->
 
 <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script>
+    $(function () {
+        $('[data-mask]').inputmask()
+    });
+</script>
 </body>
 </html>

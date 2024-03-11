@@ -3,6 +3,7 @@ C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\ren
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
+C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationCreateServlet.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
@@ -12,7 +13,11 @@ C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\ren
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
+C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientCreateServlet.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
+C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\ClientListServlet.java
+C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation_view.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
 C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
+C:\Users\titou\EPF\4A_MIN\Java\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationListServlet.java
