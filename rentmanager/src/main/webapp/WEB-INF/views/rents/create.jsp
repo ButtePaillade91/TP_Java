@@ -25,15 +25,16 @@
                     <!-- Horizontal Form -->
                     <div class="box">
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/rents/create>
+                        <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="car" class="col-sm-2 control-label">Voiture</label>
 
                                     <div class="col-sm-10">
                                         <select class="form-control" id="car" name="car">
-                                            <c:forEach items="${lesResasView}" var="reservation">
-                                                <option value="1">${reservation.vehicle.constructeur} ${reservation.vehicle.modele}</option>
+                                            <c:forEach items="${lesGovas}" var="voiture">
+                                                <option value="${voiture.constructeur} ${voiture.modele}">
+                                                ${voiture.constructeur} ${voiture.modele}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -44,7 +45,8 @@
                                     <div class="col-sm-10">
                                         <select class="form-control" id="client" name="client">
                                             <c:forEach items="${lesClients}" var="lesClients">
-                                                <option value="1">${lesClients.prenom} ${lesClients.nom}</option>
+                                                <option value="${lesClients.prenom} ${lesClients.nom}">
+                                                ${lesClients.prenom} ${lesClients.nom}</option>
                                             </c:forEach>
                                         </select>
                                     </div>

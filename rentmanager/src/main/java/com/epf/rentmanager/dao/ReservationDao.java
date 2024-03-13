@@ -33,7 +33,6 @@ public class ReservationDao {
 			PreparedStatement preparedStatement = connexion.prepareStatement(CREATE_RESERVATION_QUERY);
 			preparedStatement.setInt(1, reservation.getClient_id());
 			preparedStatement.setInt(2, reservation.getVehicle_id());
-
 			Date debutConv = Date.valueOf(reservation.getDebut());
 			Date finConv = Date.valueOf(reservation.getFin());
 			preparedStatement.setDate(3, debutConv);
@@ -41,6 +40,7 @@ public class ReservationDao {
 			preparedStatement.execute();
 			return 1;
 		} catch (SQLException error) {
+			System.out.println(error);
 			return 0;
 		}
 	}
