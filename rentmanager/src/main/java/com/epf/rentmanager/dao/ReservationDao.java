@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
@@ -134,5 +135,10 @@ public class ReservationDao {
 		} catch (SQLException error) {
 			return null;
 		}
+	}
+
+	public int count() throws DaoException {
+		List<Reservation> nbr = findAll();
+		return nbr.size();
 	}
 }

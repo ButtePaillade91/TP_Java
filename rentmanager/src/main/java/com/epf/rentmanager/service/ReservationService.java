@@ -91,4 +91,14 @@ public class ReservationService {
         }
         return liiiiiiiiiiist;
     }
+
+    public int count() throws DaoException, ServiceException {
+        int nbr = 0;
+        try {
+            nbr = reservationDao.count();
+            return nbr;
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

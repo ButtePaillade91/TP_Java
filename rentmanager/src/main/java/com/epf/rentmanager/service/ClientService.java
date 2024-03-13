@@ -74,4 +74,13 @@ public class ClientService {
 		return maListe;
 	}
 
+	public int count() throws DaoException, ServiceException {
+		int nbr = 0;
+		try {
+			nbr = clientDao.count();
+			return nbr;
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

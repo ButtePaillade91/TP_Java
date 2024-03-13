@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 
 public class ClientDao {
@@ -95,5 +96,10 @@ public class ClientDao {
 		} catch (SQLException error) {
 			return null;
 		}
+	}
+
+	public int count() throws DaoException {
+		List<Client> nbr = findAll();
+		return nbr.size();
 	}
 }
