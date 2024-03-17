@@ -19,9 +19,8 @@ public class VehicleListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        VehicleService.getInstance();
         try {
-            List<Vehicle> lesVehicules = VehicleService.instance.findAll();
+            List<Vehicle> lesVehicules = VehicleService.findAll();
             request.setAttribute("lesVehicules", lesVehicules);
             request.getRequestDispatcher("/WEB-INF/views/vehicles/list.jsp").forward(request, response);
         }  catch (ServiceException e) {

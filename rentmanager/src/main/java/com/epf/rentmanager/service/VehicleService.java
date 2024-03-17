@@ -9,26 +9,18 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VehicleService {
 
-	private VehicleDao vehicleDao;
-	public static VehicleService instance;
-	
-	private VehicleService() {
-		this.vehicleDao = VehicleDao.getInstance();
+	private static VehicleDao vehicleDao;
+
+	private VehicleService(VehicleDao vehicleDao){
+		VehicleService.vehicleDao = vehicleDao;
 	}
 	
-	public static VehicleService getInstance() {
-		if (instance == null) {
-			instance = new VehicleService();
-		}
-		
-		return instance;
-	}
-	
-	
-	public long create(Vehicle vehicle) throws ServiceException {
+	public static long create(Vehicle vehicle) throws ServiceException {
 		long monGamos = 0;
 		if (!vehicle.getConstructeur().equalsIgnoreCase("") && vehicle.getNb_places()>1) {
 			try {
@@ -46,7 +38,7 @@ public class VehicleService {
 		return monGamos;
 	}
 
-	public long delete(Vehicle vehicle) throws ServiceException {
+	public static long delete(Vehicle vehicle) throws ServiceException {
 		long intReturned = 0;
 		if (vehicle!=null && !vehicle.getConstructeur().equalsIgnoreCase("") && !vehicle.getModele().equalsIgnoreCase("")) {
 			try {
@@ -60,7 +52,7 @@ public class VehicleService {
 		return intReturned;
 	}
 
-	public Vehicle findById(long id) throws ServiceException {
+	public static Vehicle findById(long id) throws ServiceException {
 		Vehicle laGova = null;
 		try {
 			laGova = vehicleDao.findById(id);
@@ -70,7 +62,7 @@ public class VehicleService {
 		return laGova;
 	}
 
-	public List<Vehicle> findAll() throws ServiceException {
+	public static List<Vehicle> findAll() throws ServiceException {
 		List<Vehicle> liiiiiiiiiiist = new ArrayList<>();
 		try {
 			liiiiiiiiiiist = vehicleDao.findAll();
@@ -80,7 +72,7 @@ public class VehicleService {
 		return liiiiiiiiiiist;
 	}
 
-	public int count() throws DaoException, ServiceException {
+	public static int count() throws DaoException, ServiceException {
 		int nbr = 0;
 		try {
 			nbr = vehicleDao.count();

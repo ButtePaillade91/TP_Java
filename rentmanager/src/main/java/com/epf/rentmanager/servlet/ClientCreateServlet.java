@@ -29,9 +29,8 @@ public class ClientCreateServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse
             response) throws ServletException, IOException {
-        ClientService.getInstance();
         try {
-            List<Client> lesClients = ClientService.instance.findAll();
+            List<Client> lesClients = ClientService.findAll();
             System.out.println(lesClients);
             int taille = lesClients.size();
             String nom = request.getParameter("last_name");
@@ -40,7 +39,7 @@ public class ClientCreateServlet extends HttpServlet {
             String naissance = request.getParameter("dateNaissance");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dateNaissance = LocalDate.parse(naissance, formatter);
-            ClientService.instance.create(new Client(taille+1, nom, prenom, mail, dateNaissance));
+            ClientService.create(new Client(taille+1, nom, prenom, mail, dateNaissance));
             response.sendRedirect(request.getContextPath()+"/users");
         }  catch (ServiceException e) {
             e.printStackTrace();

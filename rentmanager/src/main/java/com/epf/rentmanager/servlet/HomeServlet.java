@@ -26,13 +26,11 @@ public class HomeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ClientService.getInstance();
-		VehicleService.getInstance();
-		ReservationService.getInstance();
+
         try {
-			int nbrClients = ClientService.instance.count();
-            int nbrVehicles = VehicleService.instance.count();
-			int nbrResas = ReservationService.instance.count();
+			int nbrClients = ClientService.count();
+            int nbrVehicles = VehicleService.count();
+			int nbrResas = ReservationService.count();
 			request.setAttribute("nbrClients", nbrClients);
 			request.setAttribute("nbrVehicles", nbrVehicles);
 			request.setAttribute("nbrResas", nbrResas);

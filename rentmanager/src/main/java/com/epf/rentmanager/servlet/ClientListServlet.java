@@ -21,9 +21,8 @@ public class ClientListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ClientService.getInstance();
         try {
-            List<Client> lesClients = ClientService.instance.findAll();
+            List<Client> lesClients = ClientService.findAll();
             request.setAttribute("lesClients", lesClients);
             request.getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
         }  catch (ServiceException e) {

@@ -23,9 +23,8 @@ public class ReservationListServlet extends HttpServlet  {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ReservationService.getInstance();
         try {
-            List<Reservation> lesResas = ReservationService.instance.findAll();
+            List<Reservation> lesResas = ReservationService.findAll();
             List<Reservation_view> lesResasView = new ArrayList<>();
             for (int i = 0; i < lesResas.size(); i++) {
                 lesResasView.add(Reservation_view.get_Reservation(lesResas.get(i)));

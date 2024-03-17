@@ -1,5 +1,6 @@
 package com.epf.rentmanager.ui.cli;
 
+import com.epf.rentmanager.AppConfiguration;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
@@ -8,6 +9,9 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
 import com.epf.rentmanager.service.ReservationService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
@@ -20,9 +24,10 @@ import java.util.regex.Pattern;
 public class MaClasseCLI {
     public static void main(String[] args) throws ServiceException {
         while (true) {
-            ClientService.getInstance();
-            VehicleService.getInstance();
-            ReservationService.getInstance();
+            ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+            ClientService clientService = context.getBean(ClientService.class);
+            VehicleService vehicleService = context.getBean(VehicleService.class);
+            ReservationService reservationService = context.getBean(ReservationService.class);
             System.out.println("Bienvenue sur cette interface !\nVous pouvez créer ('C'), supprimer ('S') ou afficher" +
                     " ('A') !");
             Scanner scanner = new Scanner(System.in);
@@ -90,12 +95,12 @@ public class MaClasseCLI {
                     }
                     try {
                         int taille = 0;
-                        List<Client> bdd = ClientService.instance.findAll();
+                        List<Client> bdd = ClientService.findAll();
                         if (bdd != null) {
                             taille = bdd.size() + 1;
                         }
                         int id = taille;
-                        long result = ClientService.instance.create(new Client(id, nom, prenom, mail, naissance));
+                        long result = ClientService.create(new Client(id, nom, prenom, mail, naissance));
                         if (result==1) {
                             System.out.println("Le client "+prenom+" "+nom+" a bien été créé !");
                         }
@@ -134,12 +139,12 @@ public class MaClasseCLI {
 
                     try {
                         int taille = 0;
-                        List<Vehicle> bdd = VehicleService.instance.findAll();
+                        List<Vehicle> bdd = VehicleService.findAll();
                         if (bdd != null) {
                             taille = bdd.size()+1;
                         }
                         int id = taille;
-                        long result = VehicleService.instance.create(new Vehicle(id, constructeur, modele, nb_places));
+                        long result = VehicleService.create(new Vehicle(id, constructeur, modele, nb_places));
                         if (result==1) {
                             System.out.println("Le véhicule "+constructeur+" "+modele+" a bien été créé !");
                         }
@@ -210,12 +215,12 @@ public class MaClasseCLI {
                     }
                     try {
                         int taille = 0;
-                        List<Reservation> bdd = ReservationService.instance.findAll();
+                        List<Reservation> bdd = ReservationService.findAll();
                         if (bdd != null) {
                             taille = bdd.size() + 1;
                         }
                         int id = taille;
-                        long result = ReservationService.instance.create(new Reservation(id, idC, idV, Debut, Fin));
+                        long result = ReservationService.create(new Reservation(id, idC, idV, Debut, Fin));
                         if (result==1) {
                             System.out.println("La réservation du "+debut+" au "+fin+" a bien été créé !");
                         }
@@ -243,10 +248,10 @@ public class MaClasseCLI {
                         identifiant = scanner.nextLine();
                     }
                     long id = Long.parseLong(identifiant);
-                    Client monClient = ClientService.instance.findById(id);
+                    Client monClient = ClientService.findById(id);
                     long result = 0;
                     try {
-                        result = ClientService.instance.delete(monClient);
+                        result = ClientService.delete(monClient);
                     } catch (ServiceException e) {
                         System.out.println(e);
                     }
@@ -264,10 +269,10 @@ public class MaClasseCLI {
                         identifiant = scanner.nextLine();
                     }
                     long id = Long.parseLong(identifiant);
-                    Vehicle monVehicule = VehicleService.instance.findById(id);
+                    Vehicle monVehicule = VehicleService.findById(id);
                     long result = 0;
                     try {
-                        result = VehicleService.instance.delete(monVehicule);
+                        result = VehicleService.delete(monVehicule);
                     } catch (ServiceException e) {
                         System.out.println(e);
                     }
@@ -284,10 +289,10 @@ public class MaClasseCLI {
                         identifiant = scanner.nextLine();
                     }
                     long id = Long.parseLong(identifiant);
-                    Reservation maResa = ReservationService.instance.findById(id);
+                    Reservation maResa = ReservationService.findById(id);
                     long result = 0;
                     try {
-                        result = ReservationService.instance.delete(maResa);
+                        result = ReservationService.delete(maResa);
                     } catch (ServiceException e) {
                         System.out.println(e);
                     }
@@ -307,14 +312,14 @@ public class MaClasseCLI {
                 }
                 if (type.equalsIgnoreCase("C") || type.equalsIgnoreCase("c")) {
                     try {
-                        List<Client> lesClients = ClientService.instance.findAll();
+                        List<Client> lesClients = ClientService.findAll();
                         System.out.println(lesClients);
                     } catch (ServiceException e) {
                         System.out.println(e);
                     }
                 } else if (type.equalsIgnoreCase("V") || type.equalsIgnoreCase("v")) {
                     try {
-                        List<Vehicle> lesVehicules = VehicleService.instance.findAll();
+                        List<Vehicle> lesVehicules = VehicleService.findAll();
                         System.out.println(lesVehicules);
                     } catch (ServiceException e) {
                         System.out.println(e);
@@ -332,7 +337,7 @@ public class MaClasseCLI {
                     }
                     if (typeResa.equalsIgnoreCase("T") || typeResa.equalsIgnoreCase("t")) {
                         try {
-                            List<Reservation> lesResas = ReservationService.instance.findAll();
+                            List<Reservation> lesResas = ReservationService.findAll();
                             System.out.println(lesResas);
                         } catch (ServiceException e) {
                             System.out.println(e);
@@ -349,7 +354,7 @@ public class MaClasseCLI {
                         long id = Long.parseLong(identifiant);
                         List<Reservation> resas;
                         try {
-                            resas = ReservationService.instance.findByClientId(id);
+                            resas = ReservationService.findByClientId(id);
                             System.out.println(resas);
                         } catch (ServiceException e) {
                             System.out.println(e);
@@ -366,7 +371,7 @@ public class MaClasseCLI {
                         long id = Long.parseLong(identifiant);
                         List<Reservation> resas;
                         try {
-                            resas = ReservationService.instance.findByVehicleId(id);
+                            resas = ReservationService.findByVehicleId(id);
                             System.out.println(resas);
                         } catch (ServiceException e) {
                             System.out.println(e);

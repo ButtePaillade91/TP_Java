@@ -25,14 +25,13 @@ public class VehicleCreateServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse
             response) throws ServletException, IOException {
-        VehicleService.getInstance();
         try {
-            List<Vehicle> lesVehicules = VehicleService.instance.findAll();
+            List<Vehicle> lesVehicules = VehicleService.findAll();
             int taille = lesVehicules.size();
             String constructeur = request.getParameter("manufacturer");
             String modele = request.getParameter("modele");
             int nb_places = Integer.parseInt(request.getParameter("seats"));
-            VehicleService.instance.create(new Vehicle(taille+1, constructeur, modele, nb_places));
+            VehicleService.create(new Vehicle(taille+1, constructeur, modele, nb_places));
             response.sendRedirect(request.getContextPath()+"/cars");
         }  catch (ServiceException e) {
             e.printStackTrace();

@@ -63,10 +63,8 @@ public class Reservation_view {
 
     public static Reservation_view get_Reservation(Reservation resa) throws ServiceException {
         Reservation_view resaView = new Reservation_view(resa.getId(), null, null, resa.getDebut(), resa.getFin());
-        VehicleService.getInstance();
-        resaView.vehicle = VehicleService.instance.findById(resa.getVehicle_id());
-        ClientService.getInstance();
-        resaView.client = ClientService.instance.findById(resa.getClient_id());
+        resaView.vehicle = VehicleService.findById(resa.getVehicle_id());
+        resaView.client = ClientService.findById(resa.getClient_id());
         return resaView;
     }
 }

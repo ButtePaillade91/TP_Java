@@ -6,29 +6,21 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ReservationService {
 
-    private ReservationDao reservationDao;
-    public static ReservationService instance;
+    private static ReservationDao reservationDao;
 
-    private ReservationService() {
-        this.reservationDao = ReservationDao.getInstance();
+    private ReservationService(ReservationDao reservationDao){
+        this.reservationDao = reservationDao;
     }
 
-    public static ReservationService getInstance() {
-        if (instance == null) {
-            instance = new ReservationService();
-        }
-
-        return instance;
-    }
-
-
-    public long create(Reservation reservation) throws ServiceException {
+    public static long create(Reservation reservation) throws ServiceException {
         long maResa = 0;
         try {
             maResa = reservationDao.create(reservation);
@@ -38,7 +30,7 @@ public class ReservationService {
         return maResa;
     }
 
-    public long delete(Reservation reservation) throws ServiceException {
+    public static long delete(Reservation reservation) throws ServiceException {
         long intReturned = 0;
         if (reservation!=null && reservation.getDebut()!=null && reservation.getFin()!=null) {
             try {
@@ -52,7 +44,7 @@ public class ReservationService {
         return intReturned;
     }
 
-    public Reservation findById(long id) throws ServiceException {
+    public static Reservation findById(long id) throws ServiceException {
         Reservation laResa = null;
         try {
             laResa = ReservationDao.findById(id);
@@ -62,7 +54,7 @@ public class ReservationService {
         return laResa;
     }
 
-    public List<Reservation> findByClientId(long clientid) throws ServiceException {
+    public static List<Reservation> findByClientId(long clientid) throws ServiceException {
         List<Reservation> listeResa = new ArrayList<>();
         try {
             listeResa = reservationDao.findResaByClientId(clientid);
@@ -72,7 +64,7 @@ public class ReservationService {
         return listeResa;
     }
 
-    public List<Reservation> findByVehicleId(long vehicleid) throws ServiceException {
+    public static List<Reservation> findByVehicleId(long vehicleid) throws ServiceException {
         List<Reservation> listeResa = new ArrayList<>();
         try {
             listeResa = reservationDao.findResaByVehicleId(vehicleid);
@@ -82,7 +74,7 @@ public class ReservationService {
         return listeResa;
     }
 
-    public List<Reservation> findAll() throws ServiceException {
+    public static List<Reservation> findAll() throws ServiceException {
         List<Reservation> liiiiiiiiiiist = new ArrayList<>();
         try {
             liiiiiiiiiiist = reservationDao.findAll();
@@ -92,7 +84,7 @@ public class ReservationService {
         return liiiiiiiiiiist;
     }
 
-    public int count() throws DaoException, ServiceException {
+    public static int count() throws DaoException, ServiceException {
         int nbr = 0;
         try {
             nbr = reservationDao.count();

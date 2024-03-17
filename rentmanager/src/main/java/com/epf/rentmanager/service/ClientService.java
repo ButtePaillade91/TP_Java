@@ -7,26 +7,18 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.ServiceException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
-	private ClientDao clientDao;
-	public static ClientService instance;
+	private static ClientDao clientDao;
 
-	private ClientService() {
-		this.clientDao = ClientDao.getInstance();
+	private ClientService(ClientDao clientDao){
+		this.clientDao = clientDao;
 	}
 
-	public static ClientService getInstance() {
-		if (instance == null) {
-			instance = new ClientService();
-		}
-
-		return instance;
-	}
-
-
-	public long create(Client client) throws ServiceException {
+	public static long create(Client client) throws ServiceException {
 		long intReturned = 0;
 		if (!client.getPrenom().equalsIgnoreCase("") && !client.getNom().equalsIgnoreCase("")) {
 			try {
@@ -40,7 +32,7 @@ public class ClientService {
         return intReturned;
 	}
 
-	public long delete(Client client) throws ServiceException {
+	public static long delete(Client client) throws ServiceException {
 		long intReturned = 0;
 		if (client!=null && !client.getPrenom().equalsIgnoreCase("") && !client.getNom().equalsIgnoreCase("")) {
 			try {
@@ -54,7 +46,7 @@ public class ClientService {
 		return intReturned;
 	}
 
-	public Client findById(long id) throws ServiceException {
+	public static Client findById(long id) throws ServiceException {
 		Client monClient = null;
 		try {
 			monClient = clientDao.findById(id);
@@ -64,7 +56,7 @@ public class ClientService {
 		return monClient;
 	}
 
-	public List<Client> findAll() throws ServiceException {
+	public static List<Client> findAll() throws ServiceException {
 		List<Client> maListe = new ArrayList<>();
 		try {
 			maListe = clientDao.findAll();
@@ -74,7 +66,7 @@ public class ClientService {
 		return maListe;
 	}
 
-	public int count() throws DaoException, ServiceException {
+	public static int count() throws DaoException, ServiceException {
 		int nbr = 0;
 		try {
 			nbr = clientDao.count();
