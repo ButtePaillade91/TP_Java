@@ -41,6 +41,10 @@ try {
                                     <th>Action</th>
                                 </tr>
                                 <c:forEach items="${lesResasView}" var="reservation">
+                                    <c:url var="deleteRentUrl" value="/rents/delete">
+                                        <c:param name="action" value="someAction" />
+                                        <c:param name="rentId" value="${reservation.id}" />
+                                    </c:url>
                                     <tr>
                                         <td>${reservation.id}</td>
                                         <td>${reservation.vehicle.constructeur} ${reservation.vehicle.modele}</td>
@@ -48,13 +52,16 @@ try {
                                         <td>${reservation.debut}</td>
                                         <td>${reservation.fin}</td>
                                         <td>
+                                            <form id="deleteForm${reservation.id}" action="${deleteRentUrl}" method="post" style="display: none;">
+                                                <!-- Ajoutez d'autres champs de formulaire ici si nécessaire -->
+                                            </form>
                                             <a class="btn btn-primary disabled" href="car-detail.html">
                                                 <i class="fa fa-play"></i>
                                             </a>
                                             <a class="btn btn-success disabled" href="#">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" href="rents/delete" onclick="document.getElementById('deleteForm${reservation.id}').submit(); return false;">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

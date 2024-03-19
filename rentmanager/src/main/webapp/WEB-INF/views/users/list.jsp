@@ -40,19 +40,26 @@ try {
                                     <th>Action</th>
                                 </tr>
                                 <c:forEach items="${lesClients}" var="client">
+                                    <c:url var="deleteUserUrl" value="/users/delete">
+                                        <c:param name="action" value="someAction" />
+                                        <c:param name="clientId" value="${client.id}" />
+                                    </c:url>
                                     <tr>
                                         <td>${client.id}</td>
                                         <td>${client.nom}</td>
                                         <td>${client.prenom}</td>
                                         <td>${client.email}</td>
                                         <td>
+                                            <form id="deleteForm${client.id}" action="${deleteUserUrl}" method="post" style="display: none;">
+                                                <!-- Ajoutez d'autres champs de formulaire ici si nécessaire -->
+                                            </form>
                                             <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/create">
                                             <i class="fa fa-play"></i>
                                             </a>
-                                            <a class="btn btn-success disabled" href="#">
+                                            <a class="btn btn-success" href="#">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" href="users/delete" onclick="document.getElementById('deleteForm${client.id}').submit(); return false;">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

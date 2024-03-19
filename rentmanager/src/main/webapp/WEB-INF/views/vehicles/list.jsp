@@ -41,19 +41,26 @@ try {
                                     <th>Action</th>
                                 </tr>
                                 <c:forEach items="${lesVehicules}" var="vehicle">
+                                    <c:url var="deleteVehicleUrl" value="/cars/delete">
+                                        <c:param name="action" value="someAction" />
+                                        <c:param name="vehicleId" value="${vehicle.id}" />
+                                    </c:url>
                                     <tr>
                                         <td>${vehicle.id}</td>
                                         <td>${vehicle.constructeur}</td>
                                         <td>${vehicle.modele}</td>
                                         <td>${vehicle.nb_places}</td>
                                         <td>
+                                            <form id="deleteForm${vehicle.id}" action="${deleteVehicleUrl}" method="post" style="display: none;">
+                                                <!-- Ajoutez d'autres champs de formulaire ici si nécessaire -->
+                                            </form>
                                             <a class="btn btn-primary disabled" href="car-detail.html">
                                                 <i class="fa fa-play"></i>
                                             </a>
                                             <a class="btn btn-success disabled" href="#">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" href="cars/delete" onclick="document.getElementById('deleteForm${vehicle.id}').submit(); return false;">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
