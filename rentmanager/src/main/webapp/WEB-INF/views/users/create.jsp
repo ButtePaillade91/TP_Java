@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <%@include file="/WEB-INF/views/common/head.jsp"%>
+<head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/validationClient.css">
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -32,6 +35,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom">
+                                        <span id="nomError" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -39,6 +43,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom">
+                                        <span id="prenomError" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -46,6 +51,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                        <span id="mailError" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -54,12 +60,13 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="dateNaissance" name="dateNaissance" required
                                             data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                        <span id="naissanceError" class="error-message"></span>
                                     </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Ajouter</button>
+                                <button id="adButton" type="submit" class="btn btn-info pull-right">Ajouter</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -82,6 +89,7 @@
             });
             });
         </script>
+        <script src="${pageContext.request.contextPath}/resources/js/validationClient.js"></script>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>

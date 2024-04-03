@@ -58,7 +58,7 @@ public class ReservationCreateServlet extends HttpServlet {
                 String voitureComp = VehicleService.findById(lesGovas.get(i).getId()).getConstructeur()+" "+
                         VehicleService.findById(lesGovas.get(i).getId()).getModele();
                 if (voitureComp.equalsIgnoreCase(voiture)) {
-                    vehicle_id = i+1;
+                    vehicle_id = lesGovas.get(i).getId();
                 }
             }
 
@@ -70,7 +70,7 @@ public class ReservationCreateServlet extends HttpServlet {
                 String clientComp = ClientService.findById(lesClients.get(i).getId()).getPrenom()+" "+
                         ClientService.findById(lesClients.get(i).getId()).getNom();
                 if (clientComp.equalsIgnoreCase(client)) {
-                    client_id = i+1;
+                    client_id = lesClients.get(i).getId();
                 }
             }
 
@@ -79,8 +79,7 @@ public class ReservationCreateServlet extends HttpServlet {
             LocalDate Debut = LocalDate.parse(debut, formatter);
             String fin = request.getParameter("end");
             LocalDate Fin = LocalDate.parse(fin, formatter);
-            System.out.println(taille);
-            ReservationService.create(new Reservation(taille+1, client_id, vehicle_id, Debut, Fin));
+            ReservationService.create(new Reservation(ReservationService.findAll().get(taille-1).getId()+1, client_id, vehicle_id, Debut, Fin));
             response.sendRedirect(request.getContextPath()+"/rents");
         }  catch (ServiceException e) {
             e.printStackTrace();

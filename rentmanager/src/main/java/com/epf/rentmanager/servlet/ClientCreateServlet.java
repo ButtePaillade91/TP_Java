@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @WebServlet("/users/create")
 public class ClientCreateServlet extends HttpServlet {
@@ -31,7 +33,6 @@ public class ClientCreateServlet extends HttpServlet {
             response) throws ServletException, IOException {
         try {
             List<Client> lesClients = ClientService.findAll();
-            System.out.println(lesClients);
             int taille = lesClients.size();
             String nom = request.getParameter("last_name");
             String prenom = request.getParameter("first_name");
