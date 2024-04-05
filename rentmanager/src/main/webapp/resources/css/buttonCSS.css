@@ -1,0 +1,8 @@
+.btn-group-horizontal {
+    display: flex;
+    align-items: center;
+}
+
+.btn-group-horizontal .btn {
+    margin-right: 5px; /* Espace entre les boutons */
+}

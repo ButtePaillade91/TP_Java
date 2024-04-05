@@ -9,36 +9,26 @@
 <div class="wrapper">
 
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
-    <!-- Left side column. contains the logo and sidebar -->
     <%@ include file="/WEB-INF/views/common/sidebar.jsp" %>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Voitures
+                Modifier les informations d'une voiture
             </h1>
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Horizontal Form -->
                     <div class="box">
-                        <!-- form start -->
-                        <!-- Le  type de methode http qui sera appel� lors de action submit du formulaire -->
-                        <!-- est d�crit an l'attribut "method" de la balise forme -->
-                        <!-- action indique � quel "cible" sera envoyr la requ�te, ici notre Servlet qui sera bind sur -->
-                        <!-- /vehicles/create -->
                         <form class="form-horizontal" method="post">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="manufacturer" class="col-sm-2 control-label">Marque</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Marque">
+                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Marque" value="${vehicle.constructeur}">
                                         <span id="marqueError" class="error-message"></span>
                                     </div>
                                 </div>
@@ -46,7 +36,7 @@
                                     <label for="modele" class="col-sm-2 control-label">Modele</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele">
+                                        <input type="text" class="form-control" id="modele" name="modele" placeholder="Modele" value="${vehicle.modele}">
                                         <span id="modeleError" class="error-message"></span>
                                     </div>
                                 </div>
@@ -54,30 +44,24 @@
                                     <label for="seats" class="col-sm-2 control-label">Nombre de places</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="seats" name="seats" placeholder="Nombre de places">
+                                        <input type="text" class="form-control" id="seats" name="seats" placeholder="Nombre de places" value="${vehicle.nb_places}">
                                         <span id="nbPlacesError" class="error-message"></span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                             <div class="box-footer">
                                 <button id="adButton" type="submit" class="btn btn-info pull-right">Ajouter</button>
                             </div>
-                            <!-- /.box-footer -->
                         </form>
                     </div>
-                    <!-- /.box -->
                 </div>
-                <!-- /.col -->
             </div>
         </section>
-        <!-- /.content -->
         <script src="${pageContext.request.contextPath}/resources/js/validationVehicle.js"></script>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
-<!-- ./wrapper -->
 
 <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
 </body>

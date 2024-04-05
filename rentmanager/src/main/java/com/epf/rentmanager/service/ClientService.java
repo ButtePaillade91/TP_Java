@@ -75,4 +75,15 @@ public class ClientService {
 			throw new ServiceException(e);
 		}
 	}
+
+	public static long set(Client client, String newLastName, String newFirstName, String newMail, String newBirthdate)
+			throws ServiceException {
+		long intReturned = 0;
+		if (!newLastName.equalsIgnoreCase("") && !newFirstName.equalsIgnoreCase("")) {
+            intReturned = ClientDao.set(client, newLastName, newFirstName, newMail, newBirthdate);
+        } else {
+			throw new ServiceException("Le nom et le prénom du client ne peuvent pas être vides !");
+		}
+		return intReturned;
+	}
 }

@@ -81,4 +81,15 @@ public class VehicleService {
 			throw new ServiceException(e);
 		}
 	}
+
+	public static long set(Vehicle vehicle, String newMarque, String newModele, int newNbPlaces)
+			throws ServiceException {
+		long intReturned = 0;
+		if (!newMarque.equalsIgnoreCase("") && !newModele.equalsIgnoreCase("")) {
+			intReturned = VehicleDao.set(vehicle, newMarque, newModele, newNbPlaces);
+		} else {
+			throw new ServiceException("Le nom et le prénom du véhicule ne peuvent pas être vides !");
+		}
+		return intReturned;
+	}
 }
