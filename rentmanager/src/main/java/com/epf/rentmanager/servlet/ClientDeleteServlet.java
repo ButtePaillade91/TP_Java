@@ -2,8 +2,10 @@ package com.epf.rentmanager.servlet;
 
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 
 import javax.servlet.ServletException;
@@ -35,6 +37,10 @@ public class ClientDeleteServlet extends HttpServlet {
             if ("someAction".equals(action) && clientId != null && !clientId.isEmpty()) {
                 Client client = ClientService.findById(Long.parseLong(clientId));
                 if (client != null) {
+                    List<Reservation> lesResasClient = ReservationService.findByClientId(client.getId());
+                    for (int i = 0; i < lesResasClient.size(); i++) {
+                        ReservationService.delete(lesResasClient.get(i));
+                    }
                     ClientService.delete(client);
                     response.sendRedirect(request.getContextPath() + "/users");
                 }
