@@ -86,6 +86,18 @@ function validationFormulaire() {
         debutError.classList.add('error-message');
         finError.classList.add('error-message');
     }
+    else if (debutValeur.getTime()>finValeur.getTime()) {
+        debutValid = false;
+        finValid = false;
+        debut.classList.add('invalid');
+        fin.classList.add('invalid');
+        debutError.textContent = "Il n'est pas possible d'avoir une date de fin se situant avant la date de début," +
+            " revoyez vos dates !";
+        finError.textContent = "Il n'est pas possible d'avoir une date de fin se situant avant la date de début," +
+            " revoyez vos dates !";
+        debutError.classList.add('error-message');
+        finError.classList.add('error-message');
+    }
 
     if (voitureValid && clientValid && debutValid && finValid) {
         form.submit();
