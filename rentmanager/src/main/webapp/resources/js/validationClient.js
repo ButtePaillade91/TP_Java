@@ -80,6 +80,7 @@ function validationFormulaire() {
         mailError.textContent = "L'email doit être une adresse valide !";
         mailError.classList.add('error-message');
     }
+
     else {
         mail.classList.remove('invalid');
         mailError.textContent = '';
