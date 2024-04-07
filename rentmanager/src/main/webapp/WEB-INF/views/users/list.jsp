@@ -54,7 +54,7 @@ try {
                                         <td>${client.email}</td>
                                         <td>
                                             <div class="btn-group-horizontal">
-                                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/create">
+                                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/show?clientId=${client.id}">
                                                     <i class="fa fa-play"></i>
                                                 </a>
                                                 <form id="updateForm" action="${pageContext.request.contextPath}/users/set" method="post">
