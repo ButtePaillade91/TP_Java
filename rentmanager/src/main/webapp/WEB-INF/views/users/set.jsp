@@ -61,6 +61,7 @@
                                     <label for="dateNaissance" class="col-sm-2 control-label">Date de naissance</label>
 
                                     <div class="col-sm-10">
+                                        <input type="hidden" id="clientId" name="clientId" value="<%= request.getAttribute("clientId")%>">
                                         <input type="text" class="form-control" id="dateNaissance" name="dateNaissance"
                                                value="<%= request.getAttribute("formattedDate")%>"
                                                required data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
@@ -90,7 +91,7 @@
                 });
             });
         </script>
-        <script src="${pageContext.request.contextPath}/resources/js/validationClient.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/setClient.js"></script>
     </div>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>

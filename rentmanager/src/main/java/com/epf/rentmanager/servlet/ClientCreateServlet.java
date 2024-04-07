@@ -29,20 +29,16 @@ public class ClientCreateServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        if ("getUsers".equals(action)) {
-            // Si l'action est de récupérer les utilisateurs au format JSON
+        if ("getMails".equals(action)) {
             try {
-                // Récupérer la liste des utilisateurs
                 List<Client> lesClients = ClientService.findAll();
                 List<String> lesMails = new ArrayList<>();
                 for (int i = 0; i < lesClients.size(); i++) {
                     lesMails.add(lesClients.get(i).getEmail());
                 }
 
-                // Convertir la liste des e-mails en JSON
                 String jsonMails = new Gson().toJson(lesMails);
 
-                // Envoyer la réponse JSON
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write(jsonMails);
@@ -50,13 +46,10 @@ public class ClientCreateServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         } else {
-            // Si aucune action spécifique n'est spécifiée, afficher la vue JSP normalement
             try {
-                // Récupérer la liste des clients pour la vue JSP
                 List<Client> lesClients = ClientService.findAll();
                 request.setAttribute("clients", lesClients);
 
-                // Afficher la vue JSP
                 this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
             } catch (ServiceException e) {
                 throw new RuntimeException(e);

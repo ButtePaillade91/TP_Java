@@ -2,6 +2,8 @@ var addButton = document.getElementById('adButton');
 var form = document.querySelector('form');
 
 function validationFormulaire() {
+    var clientId = document.getElementById('clientId').value;
+
     const nomValue = document.getElementById('last_name').value;
     const prenomValue = document.getElementById('first_name').value;
     const mailValue = document.getElementById('email').value;
@@ -68,7 +70,7 @@ function validationFormulaire() {
     }
 
     $.ajax({
-        url: 'http://localhost:8080/rentmanager/users/create?action=getMails',
+        url: 'http://localhost:8080/rentmanager/users/set?action=getMails&clientId=' + clientId,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -84,7 +86,7 @@ function validationFormulaire() {
                 mailError.textContent = "L'email doit être une adresse valide !";
                 mailError.classList.add('error-message');
             }
-            else if (data.includes(mailValue)) {
+            else if (data.includes(mailValue) && data.length > 0 && data[data.length - 1] !== mailValue) {
                 mailValid = false;
                 mail.classList.add('invalid');
                 mailError.textContent = "Cette adresse mail est déjà utilisée par un autre utilisateur, veuillez la changer !";
