@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <%@include file="/WEB-INF/views/common/head.jsp"%>
+<head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/buttonCSS.css">
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -51,18 +54,23 @@ try {
                                         <td>${vehicle.modele}</td>
                                         <td>${vehicle.nb_places}</td>
                                         <td>
-                                            <form id="deleteForm${vehicle.id}" action="${deleteVehicleUrl}" method="post" style="display: none;">
-                                                <!-- Ajoutez d'autres champs de formulaire ici si nécessaire -->
-                                            </form>
-                                            <a class="btn btn-primary disabled" href="car-detail.html">
-                                                <i class="fa fa-play"></i>
-                                            </a>
-                                            <a class="btn btn-success disabled" href="#">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a class="btn btn-danger" href="cars/delete" onclick="document.getElementById('deleteForm${vehicle.id}').submit(); return false;">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                            <div class="btn-group-horizontal">
+                                                <a class="btn btn-primary" href="car-detail.html">
+                                                    <i class="fa fa-play"></i>
+                                                </a>
+                                                <form id="updateForm" action="${pageContext.request.contextPath}/cars/set" method="post">
+                                                    <!-- Autres champs du formulaire -->
+                                                    <input type="hidden" id="vehicleId" name="vehicleId" value="${vehicle.id}">
+                                                    <a class="btn btn-success" href="${pageContext.request.contextPath}/cars/set?vehicleId=${vehicle.id}" onclick="submitUpdateForm(${vehicle.id})">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </form>
+                                                <form id="deleteForm${vehicle.id}" action="${deleteVehicleUrl}" method="post" style="display: none;">
+                                                </form>
+                                                <a class="btn btn-danger" href="cars/delete" onclick="document.getElementById('deleteForm${vehicle.id}').submit(); return false;">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -77,6 +85,13 @@ try {
         </section>
         <!-- /.content -->
     </div>
+
+    <script>
+        function submitUpdateForm(vehicleId) {
+            document.getElementById('vehicleId').value = vehicleId;
+            document.getElementById('updateForm').submit();
+        }
+    </script>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>

@@ -21,7 +21,6 @@ function validationFormulaire() {
     var prenomValid = true;
     var mailValid = true;
     var naissanceValid = true;
-
     if (!nomValue) {
         nomValid = false;
         nom.classList.add('invalid');
@@ -68,23 +67,38 @@ function validationFormulaire() {
         prenomError.textContent = '';
     }
 
-    if (!mailValue) {
-        mailValid = false;
-        mail.classList.add('invalid')
-        mailError.textContent = "L'email est requis !";
-        mailError.classList.add('error-message');
-    }
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailValue)) {
-        mailValid = false;
-        mail.classList.add('invalid');
-        mailError.textContent = "L'email doit être une adresse valide !";
-        mailError.classList.add('error-message');
-    }
-
-    else {
-        mail.classList.remove('invalid');
-        mailError.textContent = '';
-    }
+    $.ajax({
+        url: 'http://localhost:8080/rentmanager/users/create?action=getUsers',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (!mailValue) {
+                mailValid = false;
+                mail.classList.add('invalid')
+                mailError.textContent = "L'email est requis !";
+                mailError.classList.add('error-message');
+            }
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailValue)) {
+                mailValid = false;
+                mail.classList.add('invalid');
+                mailError.textContent = "L'email doit être une adresse valide !";
+                mailError.classList.add('error-message');
+            }
+            else if (data.includes(mailValue)) {
+                mailValid = false;
+                mail.classList.add('invalid');
+                mailError.textContent = "Cette adresse mail est déjà utilisée par un autre utilisateur, veuillez la changer !";
+                mailError.classList.add('error-message');
+            }
+            else {
+                mail.classList.remove('invalid');
+                mailError.textContent = '';
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
 
     var dateActuelle = new Date();
     var jour = dateActuelle.getDate();

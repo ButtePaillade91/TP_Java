@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <%@include file="/WEB-INF/views/common/head.jsp"%>
+<head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/validationReservation.css">
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -37,6 +40,7 @@
                                                 ${voiture.constructeur} ${voiture.modele}</option>
                                             </c:forEach>
                                         </select>
+                                        <span id="carError" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -49,6 +53,7 @@
                                                 ${lesClients.prenom} ${lesClients.nom}</option>
                                             </c:forEach>
                                         </select>
+                                        <span id="clientError" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -57,6 +62,7 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="begin" name="begin" required
                                                data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                        <span id="beginError" class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -65,12 +71,13 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="end" name="end" required
                                                data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                        <span id="endError" class="error-message"></span>
                                     </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right">Ajouter</button>
+                                <button id="adButton" type="submit" class="btn btn-info pull-right">Ajouter</button>
                             </div>
                             <!-- /.box-footer -->
                         </form>
@@ -80,9 +87,8 @@
                 <!-- /.col -->
             </div>
         </section>
-        <!-- /.content -->
+        <script src="${pageContext.request.contextPath}/resources/js/validationReservation.js"></script>
     </div>
-
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
 <!-- ./wrapper -->

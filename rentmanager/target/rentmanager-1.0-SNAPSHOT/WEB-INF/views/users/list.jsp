@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <%@include file="/WEB-INF/views/common/head.jsp"%>
+<head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/buttonCSS.css">
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -50,18 +53,23 @@ try {
                                         <td>${client.prenom}</td>
                                         <td>${client.email}</td>
                                         <td>
-                                            <form id="deleteForm${client.id}" action="${deleteUserUrl}" method="post" style="display: none;">
-                                                <!-- Ajoutez d'autres champs de formulaire ici si nécessaire -->
-                                            </form>
-                                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/create">
-                                            <i class="fa fa-play"></i>
-                                            </a>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a class="btn btn-danger" href="users/delete" onclick="document.getElementById('deleteForm${client.id}').submit(); return false;">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                            <div class="btn-group-horizontal">
+                                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/create">
+                                                    <i class="fa fa-play"></i>
+                                                </a>
+                                                <form id="updateForm" action="${pageContext.request.contextPath}/users/set" method="post">
+                                                    <!-- Autres champs du formulaire -->
+                                                    <input type="hidden" id="clientId" name="clientId" value="${client.id}">
+                                                    <a class="btn btn-success" href="${pageContext.request.contextPath}/users/set?clientId=${client.id}" onclick="submitUpdateForm(${client.id})">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </form>
+                                                <form id="deleteForm${client.id}" action="${deleteUserUrl}" method="post" style="display: none;">
+                                                </form>
+                                                <a class="btn btn-danger" href="users/delete" onclick="document.getElementById('deleteForm${client.id}').submit(); return false;">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -76,6 +84,13 @@ try {
         </section>
         <!-- /.content -->
     </div>
+
+    <script>
+        function submitUpdateForm(clientId) {
+            document.getElementById('clientId').value = clientId;
+            document.getElementById('updateForm').submit();
+        }
+    </script>
 
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>

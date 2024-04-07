@@ -47,13 +47,13 @@ function validationFormulaire() {
         nbPlacesError.textContent = "Le nombre de places du véhicule est requis !";
         nbPlacesError.classList.add('error-message');
     }
-    else if (nbPlaces<2) {
+    else if (nbPlacesValue<2) {
         nbPlacesValid = false;
         nbPlaces.classList.add('invalid');
         nbPlacesError.textContent = "Le nombre minimum de places possible est de 2 !";
         nbPlacesError.classList.add('error-message');
     }
-    else if (nbPlaces>9) {
+    else if (nbPlacesValue>9) {
         nbPlacesValid = false;
         nbPlaces.classList.add('invalid');
         nbPlacesError.textContent = "Le nombre maximum de places possible est de 9 !";
