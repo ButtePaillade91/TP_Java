@@ -24,6 +24,7 @@ com\epf\rentmanager\utils\IOUtils.class
 com\epf\rentmanager\servlet\ReservationDeleteServlet.class
 com\epf\rentmanager\persistence\FillDatabase.class
 com\epf\rentmanager\servlet\VehicleDeleteServlet.class
+com\epf\rentmanager\servlet\VehicleShowServlet.class
 com\epf\rentmanager\servlet\VehicleListServlet.class
 com\epf\rentmanager\model\Reservation_view.class
 com\epf\rentmanager\service\ClientService.class

@@ -55,7 +55,7 @@ try {
                                         <td>${vehicle.nb_places}</td>
                                         <td>
                                             <div class="btn-group-horizontal">
-                                                <a class="btn btn-primary" href="car-detail.html">
+                                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/cars/show?vehicleId=${vehicle.id}">
                                                     <i class="fa fa-play"></i>
                                                 </a>
                                                 <form id="updateForm" action="${pageContext.request.contextPath}/cars/set" method="post">

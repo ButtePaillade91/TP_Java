@@ -8,6 +8,7 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import jdk.internal.net.http.frame.Http2Frame;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,29 +19,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/users/show")
-public class ClientShowServlet extends HttpServlet {
+@WebServlet("/cars/show")
+public class VehicleShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String clientId = request.getParameter("clientId");
-        Client client = null;
-        List<Reservation> resasClient = new ArrayList<>();
+        String vehicleId = request.getParameter("vehicleId");
+        Vehicle vehicle = null;
+        List<Reservation> resasVehicle = new ArrayList<>();
         try {
-            client = ClientService.findById(Long.parseLong(clientId));
-            resasClient = ReservationService.findByClientId(client.getId());
+            vehicle = VehicleService.findById(Long.parseLong(vehicleId));
+            resasVehicle = ReservationService.findByVehicleId(vehicle.getId());
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
-        List<Reservation_view> resasClientView = new ArrayList<>();
-        for (int i = 0; i < resasClient.size(); i++) {
+        List<Reservation_view> resasVehicleView = new ArrayList<>();
+        for (int i = 0; i < resasVehicle.size(); i++) {
             try {
-                resasClientView.add(Reservation_view.get_Reservation(resasClient.get(i)));
+                resasVehicleView.add(Reservation_view.get_Reservation(resasVehicle.get(i)));
             } catch (ServiceException e) {
                 throw new RuntimeException(e);
             }
         }
-        request.setAttribute("client", client);
-        request.setAttribute("resasClientView", resasClientView);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/show.jsp").forward(request, response);
+        request.setAttribute("vehicle", vehicle);
+        request.setAttribute("resasVehicleView", resasVehicleView);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/show.jsp").forward(request, response);
     }
 }

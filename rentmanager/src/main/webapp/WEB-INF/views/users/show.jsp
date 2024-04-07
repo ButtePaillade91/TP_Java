@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <%@include file="/WEB-INF/views/common/head.jsp"%>
@@ -35,7 +36,7 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Prenom</th>
+                                    <th>Prénom</th>
                                     <th>Email</th>
                                     <th>Date de naissance</th>
                                 </tr>
@@ -56,7 +57,7 @@
         </section>
         <section class="content-header">
             <h2>
-                Reservations clients
+                Réservations clients
             </h2>
         </section>
         <section class="content">
@@ -73,7 +74,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <tr>
-                                            <th>Vehicule</th>
+                                            <th>Véhicule</th>
                                             <th>A partir du</th>
                                             <th>Jusqu'au</th>
                                         </tr>

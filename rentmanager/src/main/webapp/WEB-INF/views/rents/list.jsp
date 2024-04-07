@@ -55,10 +55,10 @@ try {
                                             <form id="deleteForm${reservation.id}" action="${deleteRentUrl}" method="post" style="display: none;">
                                                 <!-- Ajoutez d'autres champs de formulaire ici si nécessaire -->
                                             </form>
-                                            <a class="btn btn-primary disabled" href="car-detail.html">
+                                            <a class="btn btn-primary" href="#">
                                                 <i class="fa fa-play"></i>
                                             </a>
-                                            <a class="btn btn-success disabled" href="#">
+                                            <a class="btn btn-success" href="#">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a class="btn btn-danger" href="rents/delete" onclick="document.getElementById('deleteForm${reservation.id}').submit(); return false;">
