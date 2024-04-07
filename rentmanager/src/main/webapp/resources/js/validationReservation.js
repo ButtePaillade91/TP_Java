@@ -12,6 +12,8 @@ function validationFormulaire() {
     let debut = document.getElementById('begin');
     let fin = document.getElementById('end');
 
+    var voitureId = voiture.options[voiture.selectedIndex].getAttribute('data-id');
+
     var voitureError = document.getElementById('carError');
     var clientError = document.getElementById('clientError');
     var debutError = document.getElementById('beginError');
@@ -42,10 +44,17 @@ function validationFormulaire() {
         client.classList.remove('invalid');
         clientError.textContent = '';
     }
+    var datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!debutValue) {
         debutValid = false;
         debut.classList.add('invalid');
         debutError.textContent = "La date de début de réservation est requise !";
+        debutError.classList.add('error-message');
+    }
+    else if (!datePattern.test(debutValue)) {
+        debutValid = false;
+        debut.classList.add('invalid');
+        debutError.textContent = "La date doit être une date valide !";
         debutError.classList.add('error-message');
     }
     else {
@@ -56,6 +65,12 @@ function validationFormulaire() {
         finValid = false;
         fin.classList.add('invalid');
         finError.textContent = 'La date de fin de réservation est requise !';
+        finError.classList.add('error-message');
+    }
+    else if (!datePattern.test(finValue)) {
+        finValid = false;
+        fin.classList.add('invalid');
+        finError.textContent = "La date doit être une date valide !";
         finError.classList.add('error-message');
     }
     else {
@@ -99,8 +114,32 @@ function validationFormulaire() {
         finError.classList.add('error-message');
     }
 
-    if (voitureValid && clientValid && debutValid && finValid) {
-        form.submit();
+    if (debutValid&&finValid) {
+        $.ajax({
+            url: 'http://localhost:8080/rentmanager/rents/create?action=getRents&voiture='+ voitureId+'&debut='+debutValue+'&fin='+finValue,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                if (data===true) {
+                    if (voitureValid && clientValid && debutValid && finValid) {
+                        form.submit();
+                    }
+                }
+                else {
+                    debutValid = false;
+                    finValid = false;
+                    debut.classList.add('invalid');
+                    fin.classList.add('invalid');
+                    debutError.textContent = "Cette voiture est déjà réservée sur ces dates, veuillez en choisir une autre ou bien changer les dates !";
+                    finError.textContent = "Cette voiture est déjà réservée sur ces dates, veuillez en choisir une autre ou bien changer les dates !";
+                    debutError.classList.add('error-message');
+                    finError.classList.add('error-message');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
     }
 }
 addButton.addEventListener('click', function(event) {
